@@ -7,4 +7,5 @@ import com.pilyak.testmavenproject.models.UserData;
 public interface UserDao {
 	UserData getUserByID(int i);
 	List<UserData> getAllUsers();
+	void addUser(UserData user);
 }

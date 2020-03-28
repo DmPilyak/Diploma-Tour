@@ -15,26 +15,41 @@ import com.pilyak.testmavenproject.models.UserData;
 public class DefaultUserDao implements UserDao {
 	private static final String SELECT_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
 	private static final String SELECT_ALL_USERS = "SELECT * FROM users";
+	private static final String INSERT_USER = "INSERT INTO users (first_name, last_name, role_id, email, password, id)"
+			+ " VALUES (?, ?, ?, ?, ?, ?);";
 	private static final String URL = "jdbc:mysql://localhost:3306/group1_db?useUnicode=true&serverTimezone=GMT%2B8";
 	private static final String USER = "root";
 	private static final String PASSWORD = "root";
+	
+	private static DefaultUserDao instance;
+	
+	public DefaultUserDao() {
+	}
+	public static synchronized DefaultUserDao getInstance() {
+		if(instance == null) {
+			instance = new DefaultUserDao();
+		}
+		return instance;
+	}
 	
 	
 	@Override
 	public UserData getUserByID(int id) {
 		UserData user = null;
+		
 		try (Connection conn = getConnection();
 				PreparedStatement ps = conn.prepareStatement(SELECT_USER_BY_ID)) {
-			
 			ps.setInt(1, id);
 			try (ResultSet rs = ps.executeQuery();) {
 				if (rs.next()) {
 					user = new UserData();
 					user.setFirstName(rs.getString("first_name"));
 					user.setLastName(rs.getString("last_name"));
-					user.setEmail(rs.getString("e-mail"));
+					user.setEmail(rs.getString("email"));
 					user.setId(rs.getInt("id"));
+					//RoleDao roleDao = new DefaultRoleDao();
 					//user.setRole(roleDao.getRoleById(rs.getInt("role_id")));
+					user.setRole(rs.getInt("role_id"));
 				}
 			}
 		} catch (SQLException e) {
@@ -45,8 +60,9 @@ public class DefaultUserDao implements UserDao {
 	
 	private Connection getConnection() {
 		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (SQLException e) {
+		} catch (SQLException  | ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -62,10 +78,13 @@ public class DefaultUserDao implements UserDao {
 					user = new UserData();
 					user.setFirstName(rs.getString("first_name"));
 					user.setLastName(rs.getString("last_name"));
-					user.setEmail(rs.getString("e-mail"));
+					user.setEmail(rs.getString("email"));
 					user.setId(rs.getInt("id"));
-					usersList.add(user);
+					//RoleDao roleDao = new DefaultRoleDao();
 					//user.setRole(roleDao.getRoleById(rs.getInt("role_id")));
+					user.setRole(rs.getInt("role_id"));
+					usersList.add(user);
+					
 				}
 			}
 		} catch (SQLException e) {
@@ -74,5 +93,23 @@ public class DefaultUserDao implements UserDao {
 		return usersList;
 		
 	}
+	
+	public void addUser(UserData user) {
+		try(Connection conn = getConnection();
+				PreparedStatement ps = conn.prepareStatement(INSERT_USER);) {
+				ps.setString(1, user.getFirstName());
+				ps.setString(2, user.getLastName());
+				ps.setInt(3, user.getRole());
+				ps.setString(4, user.getEmail());
+				ps.setString(5, user.getPassword());
+				ps.setInt(6, user.getId());
+				ps.executeUpdate();
+
+					//System.out.println(user.getId() + " " + user.getFirstName() +" "+user.getLastName()+" "+user.getEmail());
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} 
+			
+		}
 
 }

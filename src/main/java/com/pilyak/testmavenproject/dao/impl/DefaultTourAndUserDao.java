@@ -50,8 +50,9 @@ public class DefaultTourAndUserDao implements TourAndUserDao{
 	}
 	private Connection getConnection() {
 		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (SQLException e) {
+		} catch (SQLException  | ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
 	}

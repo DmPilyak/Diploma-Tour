@@ -7,4 +7,5 @@ import com.pilyak.testmavenproject.models.TourData;
 public interface TourDao {
 	TourData getTourByID(int i);
 	List<TourData> getAllTours();
+	void addTour(TourData tour);
 }

@@ -19,6 +19,15 @@ public class Demo {
 		UserDao userDao = new DefaultUserDao();
 		UserData user = userDao.getUserByID(1);
 		System.out.println(user);
+		UserData user2 = new UserData();
+		DefaultUserDao userDao2 = new DefaultUserDao();
+		user2.setId(7);
+		user2.setFirstName("Alex");
+		user2.setLastName("Petrov");
+		user2.setEmail("ap@gmail.com");
+		user2.setPassword("pass");
+		user2.setRole(2);
+		userDao.addUser(user2);
 		List<UserData> listUsers = userDao.getAllUsers();
 		System.out.println(listUsers);
 		
@@ -33,6 +42,7 @@ public class Demo {
 		TourAndUserDao tourAndUserDao = new DefaultTourAndUserDao();
 		List<TourAndUserData> userToursLisr = tourAndUserDao.getUsersTourByUsersID(2);
 		System.out.println(userToursLisr);
+		
 	}
 
 }

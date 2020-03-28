@@ -15,6 +15,7 @@ import com.pilyak.testmavenproject.models.TourData;
 public class DefaultTourDao implements TourDao {
 	private static final String SELECT_TOUR_BY_ID = "SELECT * FROM tours WHERE id_tour = ?";
 	private static final String SELECT_ALL_TOURS = "SELECT * FROM tours";
+	private static final String INSERT_TOUR = "INSERT INTO tours (name_tour, description) VALUES (?, ?);";
 	private static final String URL = "jdbc:mysql://localhost:3306/group1_db?useUnicode=true&serverTimezone=GMT%2B8";
 	private static final String USER = "root";
 	private static final String PASSWORD = "root";
@@ -40,13 +41,6 @@ public class DefaultTourDao implements TourDao {
 		return tour;
 	}
 
-	private Connection getConnection() {
-		try {
-			return DriverManager.getConnection(URL, USER, PASSWORD);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
 
 	@Override
 	public List<TourData> getAllTours() {
@@ -70,5 +64,29 @@ public class DefaultTourDao implements TourDao {
 		} 
 		return usersList;
 	}
+
+	@Override
+	public void addTour(TourData tour) {
+		try(Connection conn = getConnection();
+				PreparedStatement ps = conn.prepareStatement(INSERT_TOUR);) {
+				ps.setString(1, tour.getNameTour());
+				ps.setString(2, tour.getDescription());
+				
+			}catch (SQLException e) {
+				e.printStackTrace();
+			} 
+			
+		}
 	
-}
+	private Connection getConnection() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			return DriverManager.getConnection(URL, USER, PASSWORD);
+		} catch (SQLException  | ClassNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+	}
+		
+	}
+	
+
