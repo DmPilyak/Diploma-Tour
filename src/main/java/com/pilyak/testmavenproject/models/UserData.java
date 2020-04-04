@@ -9,6 +9,9 @@ public class UserData {
 	private String email;
 	private Role role;
 	private String password;
+	private String referId;
+	private String birthday;
+	private String gender;
 	
 	
 	public int getId() {
@@ -61,7 +64,23 @@ public class UserData {
 	}
 	@Override
 	public String toString() {
-		return "UserData [id = " + id + ", firstName = " + firstName + ", lastName = " + lastName + ", e-mail:" + email + ", role = " + role + "]\n";
+		return "UserData [id = " + id + ", firstName = " + firstName + ", lastName = " + lastName + ", e-mail:" + email + ", role = " + role + ", pass = " + password +"]\n";
+	}
+	public void setReferId(String value) {
+		this.referId = value;
+		
+	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 }

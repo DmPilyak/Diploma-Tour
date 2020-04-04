@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Your profile</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<p>Your user is: ${logUser.firstName}</p>
-	<form action="logout">
-		<input type="submit" value="Logout"/>
-	</form>
+	${userAccount.firstName}, you have successfully registered
 </body>
 </html>

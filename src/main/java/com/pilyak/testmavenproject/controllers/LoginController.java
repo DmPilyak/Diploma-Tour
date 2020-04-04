@@ -24,15 +24,26 @@ private static final long serialVersionUID = 1L;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/request/registerForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/request/loginForm.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		String email = request.getParameter("userEmail");
-		String pass = request.getParameter("userPassword");
-		session.setAttribute("userEmail", email);
-		response.sendRedirect(getServletContext().getContextPath() + "/profileForm");
+		String email = request.getParameter("email");
+		String pass = request.getParameter("pass");
+		UserData user = userDao.getUserByEmail(email);
+		if(user != null && user.getPassword().equals(pass)) {
+			session = request.getSession();
+			session.setAttribute("userEmail", email);
+			request.setAttribute("logUser", user);
+			request.getRequestDispatcher("/WEB-INF/request/profileForm.jsp").forward(request, response);
+		} else {
+			request.setAttribute("errorLog", "E-mail or password is incorrect!");
+			request.getRequestDispatcher("/WEB-INF/request/loginForm.jsp").forward(request, response);
+		}
+			
+		
+		//response.sendRedirect(getServletContext().getContextPath() + "/profileForm");
 	}
 
 }
