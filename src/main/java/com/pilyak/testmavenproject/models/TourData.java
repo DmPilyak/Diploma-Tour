@@ -4,6 +4,7 @@ public class TourData {
 	private int tourID;
 	private String nameTour;
 	private String description;
+	private double price;
 	public int getTourID() {
 		return tourID;
 	}
@@ -22,9 +23,15 @@ public class TourData {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
 	@Override
 	public String toString() {
-		return "TourData [Tour ID = " + tourID + ", Tour name = " + nameTour + ", Description: " + description + "]\n";
+		return "TourData [Tour ID = " + tourID + ", Tour name = " + nameTour + ", Description: " + description + ", Price " + price + "]\n";
 	}
 	
 }

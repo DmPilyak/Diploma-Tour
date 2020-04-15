@@ -34,10 +34,10 @@ public class RegisterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		UserData user = new UserData();
-		user.setEmail(request.getParameter("userEmail"));
+		user.setEmail(request.getParameter("email"));
 		user.setFirstName(request.getParameter("name"));
 		user.setLastName(request.getParameter("surname"));
-		user.setPassword(request.getParameter("pass"));
+		user.setPassword(request.getParameter("pass")); 
 		user.setBirthday(request.getParameter("birthday"));
 		//user.setGender(request.getParameter("gender"));
 		//TODO: addUserValidator; boolean isValid() || return error list

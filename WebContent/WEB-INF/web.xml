@@ -25,4 +25,10 @@
 		<url-pattern>/test</url-pattern>
 	</servlet-mapping>
 	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/request/404errorForm.jsp</location>
+	</error-page>
+
+
 </web-app>

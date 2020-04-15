@@ -11,5 +11,9 @@
 	<form action="logout">
 		<input type="submit" value="Logout"/>
 	</form>
+	<form action="toursList">
+		<input type="submit" value="Order tours"/>
+	</form>
+	
 </body>
 </html>
