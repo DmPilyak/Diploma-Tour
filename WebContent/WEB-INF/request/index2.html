@@ -1,12 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="ValidationJS.js"></script>
-
 <title>Sign up</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,66 +29,85 @@
 		<div class="container-login100"
 			style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100">
-				<form action="signup" method="post"
-					class="login100-form" onsubmit="return validateEmailAndPassword();">
+				<form action="Sign up" method="post"
+					class="login100-form validate-form">
 					<span class="login100-form-logo"> <i
 						class="zmdi zmdi-landscape"></i>
 					</span> <span class="login100-form-title p-b-34 p-t-27"> Sign up </span>
 
-					<div class="wrap-input100"
+					<div class="wrap-input100 validate-input"
 						data-validate="Enter name">
 
-						<input id="name" class="input100" type="text" name="name"
+						<input class="input100" type="text" name="name"
 							placeholder="Your name"> <span class="focus-input100"
 							data-placeholder="&#xf207;"></span>
 					</div>
 
-					<div class="wrap-input100"
+					<div class="wrap-input100 validate-input"
 						data-validate="Enter surname">
-						<input id="surname" class="input100" type="text" name="surname"
+						<input class="input100" type="text" name="surname"
 							placeholder="Your surname"> <span class="focus-input100"
-							data-placeholder="&#xf207;"></span>
+							data-placeholder="&#xf191;"></span>
 					</div>
-
-					<div class="wrap-input100"
+					
+					<div class="wrap-input100 validate-input"
 						data-validate="Enter e-mail">
-						<input id="email" class="input100" type="text" name="email"
+						<input class="input100" type="text" name="userEmail"
 							placeholder="E-mail"> <span class="focus-input100"
-							data-placeholder="&#xf324;"></span>
+							data-placeholder="&#xf191;"></span>
 					</div>
-
-					<div class="wrap-input100"
+					
+					<div class="wrap-input100 validate-input"
 						data-validate="Enter password">
-						<input id="pass" class="input100" type="password" name="pass"
+						<input class="input100" type="password" name="pass"
 							placeholder="Password"> <span class="focus-input100"
 							data-placeholder="&#xf191;"></span>
 					</div>
-
-					<div class="wrap-input100"
+					
+					<div class="wrap-input100 validate-input"
 						data-validate="Enter birthday">
-						<input class="input100" type="date" name="birthday"
+						<input class="input100" type="password" name="pass"
 							placeholder="Birthday"> <span class="focus-input100"
-							data-placeholder="&#xf332;"></span>
-					</div>
-
-					<div class="wrap-input100"
-						data-validate="Enter birthday">
-						<input class="input100" type="radio" name="gender" value="male">
-						<span class="focus-input100" data-placeholder="&#xf211;"></span>Male
-						<input class="input100" type="radio" name="gender" value="female">
-						<span class="focus-input100"></span>Female
+							data-placeholder="&#xf191;"></span>
 					</div>
 					
+					<div class="wrap-input100 validate-input"
+						data-validate="Enter birthday">
+						<input class="input100" type="radio" name="gender"
+							value="male"> <span class="focus-input100"
+							data-placeholder="&#xf191;"></span>
+							<input class="input100" type="radio" name="gender"
+							value="female"> <span class="focus-input100"
+							data-placeholder="&#xf191;"></span>
+					</div>
+					<br />
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">Sign up</button>
+						<button class="login100-form-btn">Login</button>
+					</div>
+
+				</form>
+				<form action="signup">
+					<div class="text-center p-t-90">
+						<a class="txt1" href="signup"> Sign up </a>
 					</div>
 				</form>
+
 			</div>
 		</div>
 	</div>
 
 
 	<div id="dropDownSelect1"></div>
+
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="js/main.js"></script>
 
 </body>
 </html>
